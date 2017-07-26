@@ -2,6 +2,7 @@
  * Created by 안재열 on 2017-06-26.
  */
 
+$(document).ready(function() {
 var vmap;
 var selectMarker;
 var bar, bar1;
@@ -633,4 +634,4 @@ function mashUpWithDaum(lat, lot, id) {
      });*/
     alert(lat + " " + lot + " " + id);
     setting(lat, lot, id);
-}
+}});
