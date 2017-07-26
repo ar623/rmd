@@ -42,12 +42,18 @@
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><img src="/Dist/img/KESCO.png" class="img-square" alt="KESCO LOGO"></img></span>
         </a>
-
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+
+                    <!--전기안전통합관제시스템 메뉴-->
+                    <li class="nav navbar-nav"><button type="button" class="btn btn-primary btn-lg btn btn-primary">전기안전이상</button> </li>
+                    <li class="nav navbar-nav"><button type="button" class="btn btn-primary btn-lg btn-primary">관제망관리</button> </li>
+                    <li class="nav navbar-nav"><button type="button" class="btn btn-primary btn-lg btn-primary">분석/해석</button> </li>
+                    <li class="nav navbar-nav"><button type="button" class="btn btn-primary btn-lg btn-primary">기준정보관리</button> </li>
+
                     <!-- Messages: style can be found in dropdown.less-->
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -303,31 +309,235 @@
                     </li>
                 </ul>
             </div>
-
         </nav>
     </header>
     <!-- Contents -->
     <div class="container-fluid" style="background-color:#ffffff">
-        <div class="row"></div>
+        <div class="row" style="margin-bottom: 10px"></div>
         <div class="row">
             <div class="col-md-5">
                 <div class="row">
-                   <span id="clock"></span>
+                    <div class="col-md-12"><span id="clock" style="font-size: x-large; font-style: inherit"></span>
+                        <button type="button" class="btn btn-primary btn-sm btn-success">관제지도</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-success">전기안전등급지도</button>
+                    </div>
                 </div>
                 <!-- Map will be created here -->
                 <!--<div id="world-map-markers" style="height: 400px;"></div>-->
                 <div class="row">
-                    <div id="vmap" style="width:100%;height:400px;left:0px;top:10px" class="col-md-12"></div>
+                    <div id="vmap" style="width:100%;height:700px;left:0px;top:10px" class="col-md-12"></div>
                 </div>
             </div>
-            <div class="col-md-7">.col-md-7</div>
+            <!--메인 오른편-->
+            <div class="col-md-7">
+                <div class="row" style="margin-bottom: 30px"></div>
+                <!--관제 사업장-->
+                <div class="row" style="height: 100px">
+                    <!--관제사업장 테이블-->
+                    <div class="col-md-6">
+                        <table  class="table table-bordered" border = "1">
+                            <tr class ="info">
+                                <td rowspan = "2" style="font-style: inherit; text-align: center">관제 사업장</td>
+                                <td style="text-align: center; font-style: inherit;">자가용</td>
+                                <td style="text-align: center; font-style: inherit;">일반용</td>
+                            </tr>
+                            <tr>
+                                <td>99</td>
+                                <td>999</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--관제포인트 테이블-->
+                    <div class="col-md-6">
+                        <table class="table table-bordered" border = "1">
+                            <tr class ="info">
+                                <td rowspan = "2" style="text-align: center; font-style: inherit;">관제포인트</td>
+                                <td style="text-align: center; font-style: inherit;">단상</td>
+                                <td style="text-align: center; font-style: inherit;">3상</td>
+                            </tr>
+                            <tr>
+                                <td>99</td>
+                                <td>999</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--이상조치현황-->
+                <div class="row"></div>
+                    <!--이상 게이지-->
+                    <div class="col-md-3">
+                        <!--http://www.jqueryscript.net/chart-graph/Creating-Animated-Gauges-Using-jQuery-Raphael-js-kumaGauge.html 추가-->
+                        <!--<div class="js-gauge {class이름} gauge"></div>-->
+                        <div class="row js-gauge rmd gauge" id="rmd1"></div>
+                        <div class="row js-gauge rmd gauge" id="rmd2"></div>
+                    </div>
+                    <!--이상발생 및 조치 현황 월간, 주간, 일간-->
+                    <div class="col-md-9" style="height:280px; overflow:scroll">
+                        <table class="table table-bordered table-responsive" border = "1" width = "100%" >
+                            <thead>
+                            <tr class ="info">
+                                <td colspan = "4">이상 발생 및 조치 현황 (조치/발생)</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>구분</th>
+                                <th>월간</th>
+                                <th>주간</th>
+                                <th>일간</th>
+                            </tr>
+                            <tr>
+                                <th>이상1</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            <tr>
+                                <th>이상2</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            <tr>
+                                <th>이상3</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            <tr>
+                                <th>이상4</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            <tr>
+                                <th>이상5</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            <tr>
+                                <th>이상6</th>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                                <td>00/00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <!--실시간 이상발생-->
+                <div class="row">
+                    <div class="col-md-12" style="height:270px; overflow:scroll">
+                        <table class="table table-bordered table-responsive" border = "1" width = "100%">
+                            <thead>
+                            <tr class="info">
+                                <td colspan = "5" style="text-align: center">실시간 이상발생</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>일시</th>
+                                <th>사업장명</th>
+                                <th>이상명칭</th>
+                                <th>포인트NO</th>
+                                <th>대응상황</th>
+                            </tr>
+                            <tr class="danger" style="color: #9e0505">
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>AAA</td>
+                                <td>이상1</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>감지</td>
+                            </tr>
+                            <tr class="danger" style="color: #9e0505">
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>BBB</td>
+                                <td>이상2</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>감지</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>CCC</td>
+                                <td>이상3</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>DDD</td>
+                                <td>이상4</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            <tr>
+                                <td>yy/mm/dd hh:mm</td>
+                                <td>EEE</td>
+                                <td>이상5</td>
+                                <td>C_0000x_P_00x</td>
+                                <td>조치중</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!--footer-->
     <div class="container-fluid" style="background-color:#ffffff">
         <div class="row">
-            <div class="col-md-5">.col-md-5</div>
-            <div class="col-md-7"><strong>Copyright &copy; 2017 <a href="https://ziumks.com">(주)지음지식서비스</a>.</strong>
+            <div class="col-md-8"></div>
+            <div class="col-md-4" style="text-align: right"><strong>Copyright &copy; 2017 <a href="https://ziumks.com">(주)지음지식서비스</a>.</strong>
                 All rights reserved.
             </div>
 
@@ -357,7 +567,13 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/AdminLTE-2.4.0/dist/js/demo.js"></script>
 <!-- timer.js -->
-<script src="/dist/js/timer.js"></script>
+<script src="/Dist/js/timer.js"></script>
+<!--Raphael-->
+<script src="/Dist/js/raphael-min.js"></script>
+<!-- KumaGauge.js -->
+<script src="/Dist/js/kuma-gauge.jquery.js"></script>
+<!-- common.js -->
+<script src="/Dist/js/common.js"></script>
 <!--Vworld -->
 <script src="http://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&amp;apiKey=FA38BC92-346A-354B-B774-8BF75ACD9D3A"></script>
 <script src="/Dist/GIS/js/ziumGisService.js"></script>
